@@ -1,7 +1,7 @@
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
-import { PlatformerCanvas } from "./features/platformer/PlatformerCanvas";
+import { PlatformerCanvas } from "./features/PlatformerCanvas";
 
 const queryClient = new QueryClient();
 const theme = extendTheme({ config: { initialColorMode: "light" } });
