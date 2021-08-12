@@ -2,9 +2,6 @@ import { makeArrayOf } from "@pastable/react/node_modules/@pastable/utils";
 import { useCylinder } from "@react-three/cannon";
 import { MeshProps } from "@react-three/fiber";
 import { nanoid } from "nanoid";
-import { useEffect } from "react";
-import * as THREE from "three";
-import { Vector3 } from "three";
 
 const size = 2;
 const factor = 0.8660254;
@@ -13,7 +10,7 @@ const gap = 0.2;
 
 const height = size * 2 * factor;
 
-const hexagonsPerRow = [1, 4, 5, 6, 9, 6, 5, 4, 1];
+const hexagonsPerRow = [3, 6, 9, 10, 11, 10, 11, 10, 9, 6, 3];
 
 const makeRow = (nb: number, offset: number = 0) => {
     const hexagons = makeArrayOf(nb).map((_, index) => ({
@@ -43,18 +40,15 @@ export const HexagonGrid = () => {
 };
 
 export const Hexagon = ({ position, ...props }: MeshProps) => {
-    const args = [size, size, 0.5, 6];
+    const args = [size, size, 0.5, 6] as any;
 
     const [ref] = useCylinder(() => ({
         type: "Static",
+        //@ts-ignore
         position: position,
         args,
     }));
 
-    // useEffect(() => {
-    //     const cylinder = new THREE.CylinderGeometry(1, 1, 0.5, 6);
-    //     // cylinder.
-    // }, []);
     return (
         <mesh ref={ref} {...props} receiveShadow>
             <cylinderGeometry args={args} />

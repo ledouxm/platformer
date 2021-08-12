@@ -20,12 +20,7 @@ const requestPointerLock = () => {
 export const PlatformerCanvas = () => {
     const canvasRef = useRef(null);
 
-    const [status, setStatus] = useState(false);
-
     useEffect(() => {
-        document.addEventListener("pointerlockchange", (event) => {
-            setStatus((status) => !status);
-        });
         requestPointerLock();
 
         document.body.onclick = () => requestPointerLock();
